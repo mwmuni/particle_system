@@ -1,3 +1,5 @@
+#define SDL_MAIN_HANDLED
+
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -125,7 +127,7 @@ void render_particles(SDL_Renderer* renderer, Particle* particles) {
     SDL_RenderPresent(renderer);
 }
 
-void main(int argc, char* args[]) {
+int main(int argc, char* args[]) {
     srand(time(NULL));
     init_sdl();
     
@@ -150,10 +152,28 @@ void main(int argc, char* args[]) {
         update_particles(particles, dt);
         render_particles(renderer, particles);
         
-        SDL_Delay(16); // Cap at roughly 60 fps
+        Uint32 frame_time = SDL_GetTicks() - last_time;
+        const Uint32 target_frame_time = 16; // Target frame time in milliseconds
+
+        if (frame_time < target_frame_time) {
+            Uint32 delay_time = target_frame_time - frame_time;
+            SDL_Delay(delay_time);
+        }
+
+        Uint32 current_time = SDL_GetTicks();
+        float actual_frame_time = (current_time - last_time) / 1000.0f;
+        last_time = current_time;
+
+        update_particles(particles, actual_frame_time);
+        render_particles(renderer, particles);
+        if (frame_time < target_frame_time) {
+            SDL_Delay(target_frame_time - frame_time);
+        }
     }
     
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+
+    return 0;
 }
