@@ -7,10 +7,12 @@
 #include <time.h>
 
 #define SIMULATION_RANGE 5.0f
-#define NUM_PARTICLES 1000
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
-#define REPULSION_STRENGTH 0.5f
+#define NUM_PARTICLES 200
+// #define WINDOW_WIDTH 800
+// #define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+#define REPULSION_STRENGTH 0.3f
 #define MIN_DISTANCE 0.1f
 #define BASE_PARTICLE_SIZE 1.0f
 
@@ -153,7 +155,7 @@ int main(int argc, char* args[]) {
         render_particles(renderer, particles);
         
         Uint32 frame_time = SDL_GetTicks() - last_time;
-        const Uint32 target_frame_time = 16; // Target frame time in milliseconds
+        const Uint32 target_frame_time = 1000 / 144; // Target frame time in milliseconds
 
         if (frame_time < target_frame_time) {
             Uint32 delay_time = target_frame_time - frame_time;
