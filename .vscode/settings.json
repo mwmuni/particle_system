@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.ps1": "powershell",
+        "*.spec": "python",
+        "*.bat": "bat",
+        "*.cmd": "bat",
+        "random": "c",
+        "sdl.h": "c",
+        "sdl_cpuinfo.h": "c"
+    }
+}
