@@ -144,21 +144,6 @@ int main(int argc, char* args[]) {
                 quit = 1;
             }
         }
-        
-        Uint32 current_time = SDL_GetTicks();
-        float dt = (current_time - last_time) / 1000.0f;
-        last_time = current_time;
-        
-        update_particles(particles, dt);
-        render_particles(renderer, particles);
-        
-        Uint32 frame_time = SDL_GetTicks() - last_time;
-        const Uint32 target_frame_time = 16; // Target frame time in milliseconds
-
-        if (frame_time < target_frame_time) {
-            Uint32 delay_time = target_frame_time - frame_time;
-            SDL_Delay(delay_time);
-        }
 
         Uint32 current_time = SDL_GetTicks();
         float actual_frame_time = (current_time - last_time) / 1000.0f;
