@@ -1,6 +1,12 @@
 #define SDL_MAIN_HANDLED
 
+// if you are using SDL2, you should include SDL2/SDL.h on linux, and SDL.h on windows
+#ifdef _WIN32
+#include <SDL.h>
+#endif
+#ifdef __linux__
 #include <SDL2/SDL.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

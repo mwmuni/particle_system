@@ -1,1 +1,4 @@
 particle_system
+SDL2/*
+.vscode/*
+*.exe
